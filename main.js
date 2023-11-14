@@ -1,13 +1,17 @@
+// Add an event listener to execute when the window finishes loading
 window.addEventListener('load', () => {
+	//select necessary elements from the DOM
 	const form = document.querySelector("#new-task-form");
 	const input = document.querySelector("#new-task-input");
 	const list_el = document.querySelector("#tasks");
 
+	//add an even listener for the form submission
 	form.addEventListener('submit', (e) => {
+		//prevent the default form submission behavior
 		e.preventDefault();
-
+		//get the value of the input field (task description)
 		const task = input.value;
-
+		//create elements to display the task
 		const task_el = document.createElement('div');
 		task_el.classList.add('task');
 
@@ -44,6 +48,7 @@ window.addEventListener('load', () => {
 
 		input.value = '';
 
+		//add event listener to 'edit' button
 		task_edit_el.addEventListener('click', (e) => {
 			if (task_edit_el.innerText.toLowerCase() == "edit") {
 				task_edit_el.innerText = "Save";
@@ -55,6 +60,7 @@ window.addEventListener('load', () => {
 			}
 		});
 
+		//add event listener to 'delete' button
 		task_delete_el.addEventListener('click', (e) => {
 			list_el.removeChild(task_el);
 		});
